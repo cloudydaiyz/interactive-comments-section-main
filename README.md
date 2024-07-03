@@ -31,7 +31,7 @@ Users should be able to:
 
 ### Screenshot
 
-![Completed solution screenshot](./images/screenshot.jpg)
+![Completed solution screenshot](./images/screenshot.png)
 
 ### Links
 
