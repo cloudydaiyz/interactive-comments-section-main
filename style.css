@@ -1,0 +1,536 @@
+/**************/
+/* PAGE SETUP */
+
+:root {
+    /* Primary colors */
+    --mod-blue: hsl(238, 40%, 52%);
+    --soft-red: hsl(358, 79%, 66%);
+    --light-gray-blue: hsl(239, 57%, 85%);
+    --pale-red: hsl(357, 100%, 86%);
+
+    /* Neutral colors */
+    --dark-blue: hsl(212, 24%, 26%);
+    --gray-blue: hsl(211, 10%, 45%);
+    --light-gray: hsl(223, 19%, 93%);
+    --very-light-gray: hsl(228, 33%, 97%);
+    --white: hsl(0, 0%, 100%);
+
+    font-family: 'Rubik', sans-serif;
+    font-size: 14px;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+/* For layout assistance
+div {
+    border: 1px solid red;
+}
+*/
+
+/*******************/
+/* DOCUMENT STYLES */
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    background-color: var(--very-light-gray);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    max-width: 800px;
+    min-height: 80vh;
+
+    padding: 32px;
+    padding-bottom: 16px;
+}
+
+footer {
+    width: 100%;
+    min-height: 300px;
+    margin-top: 108px;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--dark-blue);
+}
+
+textarea {
+    resize: none;
+
+    border-radius: 8px;
+    border-color: var(--light-gray);
+    font-family: 'Rubik', sans-serif;
+    font-size: 14px;
+    color: var(--gray-blue);
+
+    line-height: 150%;
+}
+
+textarea:hover {
+    cursor: pointer;
+    border-color: var(--dark-blue);
+}
+
+textarea:focus {
+    outline: none;
+    border-color: var(--mod-blue);
+    color: var(--dark-blue);
+}
+
+button {
+    font-family: 'Rubik', sans-serif;
+    font-size: 14px;
+
+    background-color: transparent;
+    border: none;
+
+    transition-property: background-color, color;
+    transition-duration: 0.3s;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+p {
+    line-height: 150%;
+}
+
+footer a,
+footer a:visited 
+{
+    text-decoration: none;
+    color: var(--gray-blue);
+}
+
+footer a:hover {
+    color: var(--white);
+}
+
+/* Comment containers */
+div.comments {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    width: 100%;
+}
+
+/* Regular comment */
+div.comment {
+    padding: 16px;
+    display: flex;
+    gap: 16px;
+
+    background-color: var(--white);
+    border-radius: 8px;
+}
+
+div.comment div.main-content {
+    flex-grow: 1;
+}
+
+div.rating-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+div.rating {
+    padding: 8px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+
+    height: fit-content;
+    border-radius: 8px;
+    background-color: var(--very-light-gray);
+}
+
+div.rating-container button.reply,
+div.rating-container div.options {
+    display: none;
+}
+
+div.rating button {
+    background-color: transparent;
+    border: none;
+    color: var(--light-gray-blue);
+}
+
+div.rating button:hover 
+{
+    color: var(--mod-blue);
+}
+
+div.comment.upvoted div.rating button.upvote,
+div.comment.downvoted div.rating button.downvote {
+    color: var(--mod-blue);
+    cursor: default;
+}
+
+div.comment.me div.rating button,
+div.comment.me div.rating button:hover
+{
+    color: var(--light-gray);
+    cursor: default;
+}
+
+div.rating-container p {
+    color: var(--mod-blue);
+}
+
+/* Regular comment main content */
+div.header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 16px;
+}
+
+div.user-info {
+    display: flex;
+    align-items: center;
+}
+
+div.user-info img {
+    width: 32px;
+    height: 32px;
+
+    margin-right: 8px;
+}
+
+div.user-info h2 {
+    margin-right: 8px;
+
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--dark-blue);
+    line-height: 100%;
+}
+
+div.user-info div.you {
+    padding: 2px;
+    padding-left: 6px;
+    padding-right: 6px;
+    margin-right: 8px;
+
+    display: none;
+    background-color: var(--mod-blue);
+    border-radius: 4px;
+
+    color: var(--white);
+    font-size: 12px;
+}
+
+div.user-info > p {
+    font-weight: 400;
+    color: var(--gray-blue);
+    line-height: 100%;
+}
+
+button.reply,
+button.edit
+{
+    color: var(--mod-blue);
+}
+
+button.reply:hover,
+button.edit:hover
+{
+    color: var(--light-gray-blue);
+}
+
+button.delete {
+    color: var(--soft-red);
+}
+
+button.delete:hover {
+    color: var(--pale-red);
+}
+
+div.main-content > p {
+    font-weight: 400;
+    color: var(--gray-blue);
+}
+
+div.main-content > p span {
+    font-weight: 700;
+    color: var(--mod-blue);
+}
+
+/* Create comment */
+div.create-comment {
+    padding: 16px;
+    width: 100%;
+
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+
+    margin-top: 16px;
+
+    background-color: var(--white);
+    border-radius: 8px;
+}
+
+div.create-comment.reply {
+    margin-top: 0px;
+}
+
+div.create-comment img {
+    width: 40px;
+    height: 40px;
+}
+
+div.create-comment textarea,
+div.comment.me textarea {
+    padding: 8px;
+    flex-grow: 1;
+}
+
+div.create-comment button.submit,
+div.comment.me button.update 
+{
+    padding: 12px;
+    padding-left: 24px;
+    padding-right: 24px;
+
+    background-color: var(--mod-blue);
+    border-radius: 8px;
+    color: var(--white);
+}
+
+div.create-comment button.submit:hover,
+div.comment.me button.update:hover
+{
+    background-color: var(--light-gray-blue);
+}
+
+div.create-comment div.mobile-footer {
+    display: none;
+    width: 100%;
+}
+
+/* Comment replies */
+div.comment-replies {
+    display: flex;
+}
+
+div.sidebar {
+    flex-basis: 20%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.sidebar div.reply-line {
+    border: 1px solid var(--light-gray);
+    width: 0px;
+    height: 100%;
+    margin-right: 8px;
+}
+
+/* Your comment */
+div.comment.me div.you {
+    display: initial
+}
+
+div.comment.me textarea {
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+div.comment.me button.update {
+    padding: 12px;
+    float: right;
+}
+
+div.comment.me div.main-content > p,
+div.comment.me.edit textarea,
+div.comment.me.edit button.update  
+{
+    display: initial;
+}
+
+div.comment.me.edit div.main-content > p,
+div.comment.me textarea,
+div.comment.me button.update 
+{
+    display: none;
+}
+
+div.main-content div.header div.options {
+    display: flex;
+    gap: 16px;
+}
+
+/* Delete comment modal */
+div.delete-comment-modal {
+    display: none;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0px;
+
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+div.delete-comment-modal.visible {
+    display: initial;
+}
+
+div.delete-comment-modal div.content {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    max-width: 300px;
+    width: 100%;
+    padding: 16px;
+
+    background-color: white;
+    border-radius: 8px;
+}
+
+div.delete-comment-modal h2 {
+    padding-bottom: 16px;
+    color: var(--dark-blue);
+    font-weight: 700;
+}
+
+div.delete-comment-modal p {
+    padding-bottom: 16px;
+    color: var(--gray-blue);
+    font-weight: 400;
+}
+
+div.delete-comment-modal div.modal-options {
+    display: flex;
+    gap: 16px;
+}
+
+div.delete-comment-modal div.modal-options button {
+    flex-grow: 1;
+    padding: 12px;
+    border-radius: 8px;
+
+    color: var(--white);
+    font-weight: 400;
+}
+
+div.delete-comment-modal div.modal-options button.no {
+    background-color: var(--gray-blue);
+}
+
+div.delete-comment-modal div.modal-options button.no:hover {
+    opacity: 0.7;
+}
+
+div.delete-comment-modal div.modal-options button.yes {
+    background-color: var(--soft-red);
+}
+
+div.delete-comment-modal div.modal-options button.yes:hover {
+    background-color: var(--pale-red);
+}
+
+/* Footer styles */
+.links {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.links-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.links-container h3 {
+    color: var(--white);
+}
+
+.attribution {
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+/*******************/
+/* UTILITY CLASSES */
+
+/*****************/
+/* MEDIA QUERIES */
+@media (max-width: 670px) {
+    div.comment {
+        flex-direction: column-reverse;
+    }
+
+    div.rating-container {
+        flex-direction: row;
+    }
+
+    div.rating {
+        flex-direction: row;
+        width: fit-content;
+    }
+
+    div.rating-container button.reply {
+        display: initial;
+    }
+
+    div.rating-container div.options {
+        display: flex;
+        gap: 16px;
+    }
+
+    div.main-content div.header button,
+    div.main-content div.header div.options {
+        display: none;
+    }
+
+    div.create-comment {
+        flex-direction: column;
+    }
+
+    div.create-comment > img,
+    div.create-comment > button {
+        display: none;
+    }
+
+    div.create-comment textarea {
+        width: 100%;
+    }
+
+    div.create-comment div.mobile-footer {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    div.sidebar {
+        flex-direction: row;
+    }
+}
